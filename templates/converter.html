@@ -1,0 +1,45 @@
+<style>
+    .bg-img {
+        width: 100%;
+        height: 100%;
+        background: url('static/bg1.png') center center no-repeat;
+        background-size: cover;
+    }
+</style>
+<div class="bg-img">
+<body>
+{% extends 'navbar.html' %}
+{% block title %}<title>Splinterlands Currency Converter</title>{% endblock %}
+{% block content %}
+<div class="container bg-dark border py-3 my-3 text-white mt-4">
+    <form method="POST" action="{{ url_for('converter') }}">
+        <div class="m-4">
+            <div class="row g-3">
+                <h1>Splinterlands Currency Converter</h1>
+                <div class="col-6">
+                    <input type="number" name="amount" class="form-control" placeholder="Amount" value="{{ amount }}" required>
+                    <div class="invalid-feedback">Please enter an integer to continue.</div>
+                </div>
+                <div class="col-4">
+                    <select class="form-select" name="Currencies">
+                        <option>DEC</option>
+                        <option>SPS</option>
+                        <option>LAND PLOT</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <input type="submit" class="btn btn-secondary">
+                </div>
+                {{ errors }}
+                {% if result %}
+                <h3 color:"black"><b>Results:</b> {{amount}} {{selection}} is worth ${{ result }}</h3>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,98 @@
+<style>
+    .bg-img {
+        background-image: url("static/bg7.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        height: 100%;
+        overflow: auto;
+    }
+    .cols {
+        padding: 15px;
+        font-size: 18px;
+        background-color: rgb(21, 128, 0);
+        margin-bottom: 15px;
+    }
+    [class^=col-]{
+        padding: 10px 15px;
+        background: #5fc451;
+        border: 2px solid rgba(0,0,0,0.5);
+    }
+    .th {
+        text-align: left;
+    }
+</style>
+<div class="bg-img">
+    <body>
+        {% extends 'navbar.html' %}
+        {% block content %}
+        <div class="container mt-4">
+                <div class="row justify-content-around">
+                    <div class="col-5 align-self-start"><h4>Player Stats</h4>
+                        <form method="POST" action="/playerstats">
+                            <div class="input-group">
+                        <input type="text" name="playerName" placeholder="Player Name" class="form-control" required>
+                        <input type="submit" name="submitStats" value="Submit" class="btn btn-secondary"></input>
+                        <div class="invalid-feedback">Please enter a valid player name.</div>
+                        </div>
+                        {% if tableHtml %}
+                        <hr>
+                        <h5 mt-3>Results: {{ player }}</h5>
+                        <div class="m-4">
+                            <table class="table">
+                                {{ tableHtml | safe }}
+                                </div>
+                            </table>
+                        {% endif %}
+                </div>
+                </form>
+                    <div class="col-5 align-self-start"><h4>Richlist</h4>
+                        <form method="POST" action="/playerstats">
+                            <div class="input-group">
+                            <select class="form-select" name="richlist">
+                                <option value="DEC" name="DEC">Dark Energy Crystals</option>
+                                <option value="CREDITS" name="CREDITS">Credits</option>
+                                <option value="ALPHA" name="ALPHA">Alpha</option>
+                                <option value="BETA" name="BETA">Beta</option>
+                                <option value="UNTAMED" name="UNTAMED">Untamed</option>
+                                <option value="ORB" name="ORB">Orb</option>
+                                <option value="DICE" name="DICE">Dice</option>
+                                <option value="LEGENDARY" name="LEGENDARY">Legendary Potions</option>
+                                <option value="GOLD" name="GOLD">Gold Potion</option>
+                                <option value="PLOT" name="PLOT">Plot</option>
+                                <option value="TRACT" name="TRACT">Tract</option>
+                                <option value="REGION" name="REGION">Region</option>
+                                <option value="TOTEML" name="TOTEML">Legendary Totem</option>
+                                <option value="TOTEME" name="TOTEME">Epic Totem</option>
+                                <option value="TOTEMR" name="TOTEMR">Rare Totem</option>
+                                <option value="TOTEMC" name="TOTEMC">Common Totem</option>
+                                <option value="MERITS" name="MERITS">Merits</option>
+                                <option value="GLADIUS" name="GLADIUS">Gladius</option>
+                                <option value="BLDSTONE" name="BLDSTONE">Bloodstone</option>
+                                <option value="PWRSTONE" name="PWRSTONE">Powerstone</option>
+                                <option value="SPS" name="SPS">SPS</option>
+                                <option value="SPSP" name="SPSP">Staked SPS</option>
+                                <option value="SPSTOTAL" name="SPSTOTAL">Total SPS</option>
+                                <option value="COLLECTION_POWER" name="COLLECTION_POWER">Collection Power</option>
+                                <input type="submit" name="submitRichlist" value="Submit" class="btn btn-secondary"></input>
+                            </div>
+                                {% if result %}
+                                <hr>
+                                <h5 mt-3>Results: {{ selection }}</h5>
+                                <div class="m-4">
+                                    <table class="table">
+                                        {{ result | safe }}
+                                    </div>
+                                    </table>
+                                    {% endif %}
+                                </div>
+                            </select>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+{% endblock %}

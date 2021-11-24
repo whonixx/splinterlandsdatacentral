@@ -1,0 +1,57 @@
+<style>
+    .bg-img {
+        background-image: url("static/mainBackground.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        height: 100%;
+    }
+    .centeredTitle {
+        position: absolute;
+        top: 10%;
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        font-size: 48px;
+        color: white;
+    }
+    p {
+        position: relative;
+        text-align: center;
+        font-size: 125px;
+        top: 25%;
+    }
+</style>
+</head>
+<body>
+    <div class="bg-img">
+        {% extends 'navbar.html' %}
+        {% block content %}
+        <div class="centeredTitle"><u>-Splinterlands Central-</u></div>
+        <p class="text-white" id="countdown"></p>
+    </div>
+<script>
+var countDownDate = new Date("Dec 8, 2021 12:00:00").getTime();
+
+
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "CHAOS LEGION IS OUT!!";
+  }
+}, 1000);
+</script>
+
+</body>
+{% endblock %}

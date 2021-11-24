@@ -1,0 +1,54 @@
+<style>
+    .bg-img {
+        background-image: url("static/bg2.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        height: 100%;
+        overflow: auto;
+    }
+    .th {
+        text-align: left;
+    }
+</style>
+<div class="bg-img">
+    <body>
+        {% extends 'navbar.html' %}
+        {% block content %}
+        <div class="container bg-dark border py-3 my-3 text-white mt-4">
+            <h1 style="text-align: center" class="m-4"><u>Guild Contributions</u></h1>
+            <form method="POST" action="/guildstats">
+                <div class="input-group">
+                    <select class="form-select" name="guilds">
+                        <option value="" {% if guildNames == "" %} selected {% endif %}></option>
+                        {% for name in guildNames %}
+                        <option value="{{name}}" selected>{{name}}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" name="getID" class="btn btn-secondary">Get ID</button></div>
+                    {% if getFinalID %}
+                        <hr>
+                        <h6>Guild: {{selection}}</h6>
+                        <h6 mt-3>ID: {{ getFinalID }}</h6>
+                        {% endif %}
+                    <br>
+                    <div>
+                        <div class="input-group">
+                            <input class="form-control" name="guildID" placeholder="Guild ID">
+                            <button type="submit" name="submitID" class="btn btn-secondary">Submit</button>
+                    </div>
+            </form>
+        </div>
+        {% if result %}
+            <hr>
+            <h5 mt-3>Results:</h5>
+            <div class="m-4">
+                <table class="table">
+                    {{ result | safe }}
+                </div>
+                </table>
+                {% endif %}
+
+    </body>
+    {% endblock %}
